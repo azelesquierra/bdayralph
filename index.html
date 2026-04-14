@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday, my Love💖</title>
+<style>
+  :root{
+    --bg:#0f1724; --card:#0b1220; --accent:#ff7aa2; --text:#f8fafc;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    background:linear-gradient(180deg,#061024 0%,#071627 60%), radial-gradient(circle at 10% 10%, rgba(255,122,162,0.06), transparent 10%);
+    color:var(--text); min-height:100vh; display:flex; align-items:center; justify-content:center;
+  }
+  .wrap{width:95%;max-width:920px;padding:28px;}
+  .center{display:flex;flex-direction:column;align-items:center;gap:18px}
+  h1{font-size:clamp(28px,6vw,56px); letter-spacing:4px; margin:0; text-align:center; color:var(--accent); text-shadow:0 6px 18px rgba(0,0,0,0.6);}
+  .subtitle{color:#cbd5e1;opacity:0.9;margin:0;font-size:16px}
+  .big-btn{
+    margin-top:10px; background:linear-gradient(90deg, rgba(255,122,162,0.14), rgba(255,122,162,0.06));
+    border: 2px solid rgba(255,122,162,0.18); color:var(--text); padding:12px 18px; border-radius:10px;
+    font-weight:600; cursor:pointer; display:inline-flex; gap:10px; align-items:center;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .big-btn:hover{transform:translateY(-3px); box-shadow:0 8px 30px rgba(0,0,0,0.4)}
+  /* Stage with icons */
+  .stage{display:none; margin-top:20px; width:100%;}
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px}
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.04); padding:16px; border-radius:12px; text-align:center; cursor:pointer;
+    min-height:120px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .card:hover{transform:translateY(-6px); box-shadow:0 20px 40px rgba(2,6,23,0.6)}
+  .icon{width:48px;height:48px; opacity:0.95}
+  .label{font-weight:700; font-size:15px}
+  .content-area{margin-top:18px; background:var(--card); border-radius:10px; padding:14px; border:1px solid rgba(255,255,255,0.03)}
+  /* Album */
+  .album{display:none; gap:8px}
+  .thumbs{display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:8px}
+  .thumb{background:#0a1220;border-radius:8px; min-height:88px; display:flex; align-items:center; justify-content:center; color:#9aa8b7; font-size:13px; overflow:hidden}
+  .thumb img{width:100%; height:100%; object-fit:cover; display:block}
+  /* Message */
+  .message{display:none; max-height:320px; overflow:auto; line-height:1.55; color:#e6eef9; padding:10px}
+  /* Song */
+  .song{display:none}
+  iframe{width:100%; height:300px; border-radius:8px; border:0}
+  /* Goals */
+  .goals{display:none; padding:8px}
+  ul.goals-list{margin:0;padding-left:18px}
+  .back-row{display:flex; gap:10px; margin-top:14px; justify-content:center}
+  .ghost{background:transparent;border:0;color:#a9bed6;cursor:pointer;padding:8px 12px;border-radius:8px}
+  footer{margin-top:18px;text-align:center;color:#9fb1c7;font-size:13px}
+  /* responsive tweaks */
+  @media (max-width:520px){ .thumbs{grid-template-columns:repeat(2,1fr)} }
+</style>
+</head>
+<body>
+  <div class="wrap center" id="app">
+    <!-- Initial screen -->
+    <div id="welcome" class="center">
+      <h1>H A P P Y &nbsp; B I R T H D A Y 🎉</h1>
+      <p class="subtitle">This little page is for Ralph press start ♥</p>
+      <button id="startBtn" class="big-btn" aria-label="Start">
+        START &nbsp; ➜
+      </button>
+      <footer>From: Azel❤️</footer>
+    </div>
+
+    <!-- Stage: hidden initially -->
+    <div id="stage" class="stage">
+      <div class="grid">
+        <!-- Album card -->
+        <div class="card" id="albumCard" role="button" tabindex="0" aria-pressed="false">
+          <!-- simple picture/logo svg -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.2" fill="none" />
+            <circle cx="8.5" cy="9.5" r="1.7" stroke="currentColor" stroke-width="1.2" fill="none"/>
+            <path d="M21 20l-5-6-4 5-3-4-4 6" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="label">Our Album</div>
+        </div>
+
+        <!-- Message card -->
+        <div class="card" id="messageCard" role="button" tabindex="0" aria-pressed="false">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/>
+            <path d="M3 6l9 7 9-7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <div class="label">A Love Letter</div>
+        </div>
+
+        <!-- Song card -->
+        <div class="card" id="songCard" role="button" tabindex="0" aria-pressed="false">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 19V6l12-2v13" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="6" cy="18" r="2" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          </svg>
+          <div class="label">A Song That Reminds Me</div>
+        </div>
+
+        <!-- Goals card -->
+        <div class="card" id="goalsCard" role="button" tabindex="0" aria-pressed="false">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="5" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/>
+            <path d="M9 9l6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15 9v6h6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="label">Our Goals</div>
+        </div>
+      </div>
+
+      <div class="content-area" id="content">
+        <!-- Album -->
+        <div id="albumArea" class="album">
+          <h3 style="margin:0 0 10px 0">Our Album</h3>
+          <div class="thumbs" id="thumbs">
+            <!-- Replace these placeholder divs with <img src="path/to/your-photo.jpg" alt="..."> -->
+            <div class="thumb"><img src="C:\Users\esqui\Downloads\f645c791-3b9a-4d5a-b573-d0e7ffb50743.jpg" alt="Photo 1"></div>
+            <div class="thumb"><img src="C:\Users\esqui\Downloads\e4131467-a1b8-4d32-9a69-6ba0538cf1b9.jpg" alt="Photo 2"></div>
+            <div class="thumb"><img src="C:\Users\esqui\Downloads\ba14d120-c4b0-46ed-96c8-33a5c14b5a85.jpg" alt="Photo 3"></div>
+            <div class="thumb"><img src="C:\Users\esqui\Downloads\64e90117-03d1-4810-8de5-9c2d99cb34ce.jpg" alt="Photo 4"></div>
+            <div class="thumb"><img src="C:\Users\esqui\Downloads\c6aeb182-11c4-47e6-9fe6-89dbf7b3637b.jpg" alt="Photo 5"></div>
+          </div>
+        </div>
+
+        <!-- Message -->
+        <div id="messageArea" class="message" aria-live="polite">
+          <h3 style="margin-top:0">My Love Letter</h3>
+          <p>
+            <!-- <-- Replace the text below with your long personal message -->
+            My dearest love, every day with you feels like a warm sunrise — gentle, bright, and full of promise. From the silly jokes to the quiet moments where we hold hands, you have shown me what it means to be truly seen. I love the way you laugh, the way you worry about others, and the small things you do that make life sweeter. On this birthday I wish for you everything your heart desires: joy, health, adventures, and quiet nights wrapped in comfort. Thank you for being my partner, my anchor, my best friend — I love you more than words can hold.
+          </p>
+        </div>
+
+       <!-- Song -->
+<div id="songArea" class="song">
+  <h3 style="margin-top:0">A song that reminds me of you</h3>
+  <iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/3JZ_D3ELwOQ" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+</iframe>
+
+  </p>
+</div>
+
+
+        <!-- Goals -->
+        <div id="goalsArea" class="goals">
+          <h3 style="margin-top:0">Our Goals Together</h3>
+          <ul class="goals-list">
+            <li>Travel to a new country together at least once a year</li>
+            <li>Save for a cozy home where we always feel safe</li>
+            <li>Learn a hobby together (cooking / dancing / photography)</li>
+            <li>Celebrate small wins weekly and communicate openly</li>
+             <li>Be Happy and Inlove </li>
+              <li>Grow old together bebe hheheheh</li>
+          </ul>
+        </div>
+
+        <div class="back-row">
+          <button id="backBtn" class="ghost">← Back to Menu</button>
+          <button id="editBtn" class="ghost">Edit content (open file)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // Simple interactivity without external libs
+  const startBtn = document.getElementById('startBtn');
+  const welcome = document.getElementById('welcome');
+  const stage = document.getElementById('stage');
+  const content = document.getElementById('content');
+
+  startBtn.addEventListener('click', ()=>{
+    welcome.style.display = 'none';
+    stage.style.display = 'block';
+    // show menu only; content area empty until user clicks a card
+    hideAllContent();
+  });
+
+  // Card handlers
+  const albumCard = document.getElementById('albumCard');
+  const messageCard = document.getElementById('messageCard');
+  const songCard = document.getElementById('songCard');
+  const goalsCard = document.getElementById('goalsCard');
+
+  const albumArea = document.getElementById('albumArea');
+  const messageArea = document.getElementById('messageArea');
+  const songArea = document.getElementById('songArea');
+  const goalsArea = document.getElementById('goalsArea');
+
+  albumCard.addEventListener('click', ()=> showSection('album'));
+  messageCard.addEventListener('click', ()=> showSection('message'));
+  songCard.addEventListener('click', ()=> showSection('song'));
+  goalsCard.addEventListener('click', ()=> showSection('goals'));
+
+  // keyboard accessible
+  [albumCard,messageCard,songCard,goalsCard].forEach(c=>{
+    c.addEventListener('keydown', e=>{
+      if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.click(); }
+    });
+  });
+
+  document.getElementById('backBtn').addEventListener('click', hideAllContent);
+  document.getElementById('editBtn').addEventListener('click', ()=>{
+    // Open browser's "open file" is not possible; instruct user
+    alert("To customize text/images/video: open this HTML file in a text editor (Notepad/VS Code) and replace the placeholder images, the <VIDEO_ID> in the iframe, and the message text.");
+  });
+
+  function hideAllContent(){
+    albumArea.style.display = 'none';
+    messageArea.style.display = 'none';
+    songArea.style.display = 'none';
+    goalsArea.style.display = 'none';
+  }
+
+  function showSection(name){
+    hideAllContent();
+    if(name === 'album'){ albumArea.style.display = 'block'; }
+    if(name === 'message'){ messageArea.style.display = 'block'; }
+    if(name === 'song'){ songArea.style.display = 'block'; }
+    if(name === 'goals'){ goalsArea.style.display = 'block'; }
+    // scroll to content area smoothly
+    content.scrollIntoView({behavior:'smooth'});
+  }
+
+  // small enhancement: reveal stage automatically if user pressed Enter on welcome
+  document.addEventListener('keydown',(e)=>{
+    if(welcome.style.display !== 'none' && (e.key==='Enter' || e.key===' ')){
+      startBtn.click();
+    }
+  });
+</script>
+</body>
+</html>
